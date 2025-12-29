@@ -8,11 +8,7 @@ import { PERSONAL_INFO, PROJECTS, SKILL_GROUPS, EDUCATION, ACHIEVEMENTS } from '
 export type AccentColor = 'indigo' | 'emerald' | 'rose' | 'cyan' | 'orange';
 
 const App: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved) return saved === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+  const isDarkMode = true; // Dark mode only
 
   const [accent, setAccent] = useState<AccentColor>(() => {
     const saved = localStorage.getItem('accent');
@@ -28,14 +24,8 @@ const App: React.FC = () => {
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    const root = window.document.documentElement;
-    if (isDarkMode) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-  }, [isDarkMode]);
+    window.document.documentElement.classList.add('dark');
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('accent', accent);
@@ -63,7 +53,7 @@ const App: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
 
   // Dynamic class helpers for theming and visibility
   const accentClasses = {
@@ -121,7 +111,7 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen transition-colors duration-500 ${isDarkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'} selection:bg-slate-400/30`}>
-      <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} accent={accent} setAccent={setAccent} />
+      <Navbar isDarkMode={isDarkMode} accent={accent} setAccent={setAccent} />
       
       {/* Hero Section */}
       <header className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -179,7 +169,7 @@ const App: React.FC = () => {
               <h2 className={`text-4xl md:text-5xl font-heading font-bold mb-4 italic tracking-tighter ${accentClasses.text} transition-colors duration-300 ${accentClasses.hover}`}>Projects</h2>
               <div className={`h-1.5 w-24 bg-gradient-to-r ${accentClasses.gradient} rounded-full transition-all group-hover:w-48`}></div>
             </div>
-            <p className="text-slate-500 dark:text-slate-100 max-w-md text-lg italic">
+            <p className="text-slate-600 dark:text-slate-100 max-w-md text-lg italic">
               {/* "Building the future with AI-driven solutions and robust architectures." */}
             </p>
           </div>
@@ -209,11 +199,11 @@ const App: React.FC = () => {
                   {group.items.map((skill, itemIdx) => (
                     <li 
                       key={itemIdx} 
-                      className={`flex items-center gap-3 text-slate-600 dark:text-slate-200 group/item transition-all duration-500 ease-out ${skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                      className={`flex items-center gap-3 text-slate-700 dark:text-slate-200 group/item transition-all duration-500 ease-out ${skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
                       style={{ transitionDelay: `${(groupIdx * 150) + (itemIdx * 50)}ms` }}
                     >
                       <div className={`w-2 h-2 rounded-full opacity-60 bg-${accent}-500 group-hover/item:opacity-100 transition-opacity`}></div>
-                      <span className={`transition-colors duration-300 font-medium ${accentClasses.groupHover}`}>{skill}</span>
+                      <span className={`transition-colors duration-300 font-medium text-slate-700 dark:text-slate-200 ${accentClasses.groupHover}`}>{skill}</span>
                     </li>
                   ))}
                 </ul>
@@ -293,10 +283,10 @@ const App: React.FC = () => {
               </div>
               
               <div className="flex-shrink-0">
-                {/* Resume PDF located at: Vedant_Yeola_CV.pdf */}
+                {/* Resume PDF located at: Vedant_Yeola_Resume.pdf */}
                 <a 
-                  href="/Vedant_Yeola_CV.pdf"
-                  download="Vedant_Yeola_CV.pdf"
+                  href="/Vedant_Yeola_Resume.pdf"
+                  download="Vedant_Yeola_Resume.pdf"
                   className={`group relative flex flex-col items-center justify-center gap-2 px-12 py-8 ${accentClasses.bg} text-white font-bold rounded-3xl transition-all transform hover:scale-105 active:scale-95 shadow-2xl ${accentClasses.glow} overflow-hidden`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
@@ -315,7 +305,7 @@ const App: React.FC = () => {
         <section id="contact" ref={contactRef} className="scroll-mt-24">
           <div className="text-center mb-16">
             <h2 className={`text-4xl md:text-6xl font-heading font-bold mb-6 ${accentClasses.text} transition-colors duration-300 ${accentClasses.hover}`}>Get in Touch</h2>
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
+            <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
               Open to collaborations and full-stack development opportunities.
             </p>
           </div>
@@ -329,7 +319,7 @@ const App: React.FC = () => {
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               </div>
               <div className="text-center">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Email</p>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Email</p>
                 <p className={`text-lg font-medium transition-colors ${accentClasses.groupHover}`}>{PERSONAL_INFO.email}</p>
               </div>
             </a>
@@ -344,7 +334,7 @@ const App: React.FC = () => {
                 <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </div>
               <div className="text-center">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">LinkedIn</p>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">LinkedIn</p>
                 <p className={`text-lg font-medium transition-colors ${accentClasses.groupHover}`}>Vedant Yeola</p>
               </div>
             </a>
@@ -357,7 +347,7 @@ const App: React.FC = () => {
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
               </div>
               <div className="text-center">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Phone</p>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Phone</p>
                 <p className={`text-lg font-medium transition-colors ${accentClasses.groupHover}`}>{PERSONAL_INFO.phone}</p>
               </div>
             </a>
@@ -394,7 +384,7 @@ const App: React.FC = () => {
         </svg>
       </div>
 
-      <footer className={`py-20 text-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>
+      <footer className={`py-20 text-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
         <p className="font-light tracking-wide italic">© {new Date().getFullYear()} Vedant Yeola </p>
       </footer>
     </div>

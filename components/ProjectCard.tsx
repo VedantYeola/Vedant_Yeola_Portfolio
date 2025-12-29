@@ -37,7 +37,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, accent }) => {
         {project.title}
       </h3>
       
-      <p className="text-slate-600 dark:text-slate-100 text-sm leading-relaxed mb-6 font-medium">
+      <p className="text-slate-700 dark:text-slate-100 text-sm leading-relaxed mb-6 font-medium">
         {project.description}
       </p>
 

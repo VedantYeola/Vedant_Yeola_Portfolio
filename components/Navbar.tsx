@@ -28,12 +28,11 @@ const Logo = ({ accent }: { accent: AccentColor }) => {
 
 interface NavbarProps {
   isDarkMode: boolean;
-  toggleTheme: () => void;
   accent: AccentColor;
   setAccent: (accent: AccentColor) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme, accent, setAccent }) => {
+const Navbar: React.FC<NavbarProps> = ({ isDarkMode, accent, setAccent }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConnectOpen, setIsConnectOpen] = useState(false);
 
@@ -110,37 +109,34 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme, accent, setAcc
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="h-6 w-px bg-slate-200 dark:bg-white/10 hidden sm:block"></div>
+          <div className="h-6 w-px bg-white/10 hidden sm:block"></div>
 
-          {/* Accent Switcher */}
-          <div className="flex items-center gap-1.5 p-1 bg-slate-200/50 dark:bg-white/5 rounded-full border border-slate-300/30 dark:border-white/5">
-            {accents.map((a) => (
-              <button
-                key={a}
-                onClick={() => setAccent(a)}
-                className={`w-5 h-5 rounded-full transition-all transform hover:scale-125 ${a === accent ? 'ring-2 ring-offset-2 ring-slate-400 dark:ring-offset-slate-950 scale-110' : 'opacity-40 hover:opacity-100'} 
-                ${a === 'indigo' ? 'bg-indigo-500' : a === 'emerald' ? 'bg-emerald-500' : a === 'rose' ? 'bg-rose-500' : a === 'cyan' ? 'bg-cyan-500' : 'bg-orange-500'}`}
-                title={`${a.charAt(0).toUpperCase() + a.slice(1)}`}
-              />
-            ))}
+          {/* Accent Switcher - Hidden by default, shows on hover */}
+          <div className="relative group/accent">
+            <button 
+              className={`w-8 h-8 rounded-full transition-all transform hover:scale-110 
+              ${accent === 'indigo' ? 'bg-indigo-500' : accent === 'emerald' ? 'bg-emerald-500' : accent === 'rose' ? 'bg-rose-500' : accent === 'cyan' ? 'bg-cyan-500' : 'bg-orange-500'} ring-2 ring-offset-2 ring-slate-400 ring-offset-slate-950`}
+              title="Change accent color"
+            />
+            <div className="absolute right-0 top-full mt-3 opacity-0 scale-95 -translate-y-2 pointer-events-none group-hover/accent:opacity-100 group-hover/accent:scale-100 group-hover/accent:translate-y-0 group-hover/accent:pointer-events-auto transition-all duration-300 ease-out origin-top-right">
+              <div className="flex items-center gap-2 p-2 bg-slate-900/95 rounded-2xl border border-white/10 backdrop-blur-xl shadow-2xl">
+                {accents.map((a) => (
+                  <button
+                    key={a}
+                    onClick={() => setAccent(a)}
+                    className={`w-7 h-7 rounded-full transition-all transform hover:scale-125 ${a === accent ? 'ring-2 ring-offset-2 ring-white/50 ring-offset-slate-900 scale-110' : 'opacity-60 hover:opacity-100'} 
+                    ${a === 'indigo' ? 'bg-indigo-500' : a === 'emerald' ? 'bg-emerald-500' : a === 'rose' ? 'bg-rose-500' : a === 'cyan' ? 'bg-cyan-500' : 'bg-orange-500'}`}
+                    title={`${a.charAt(0).toUpperCase() + a.slice(1)}`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-
-          <button 
-            onClick={toggleTheme}
-            className={`p-2 rounded-xl transition-all duration-300 ${isDarkMode ? 'bg-slate-900 text-yellow-400 hover:bg-slate-800' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'}`}
-            aria-label="Toggle Theme"
-          >
-            {isDarkMode ? (
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" /></svg>
-            ) : (
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" /></svg>
-            )}
-          </button>
 
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`p-2 lg:hidden rounded-xl transition-all ${isDarkMode ? 'bg-slate-900 text-white' : 'bg-slate-200 text-slate-900'}`}
+            className={`p-2 lg:hidden rounded-xl transition-all bg-slate-900 text-white`}
           >
             {isMenuOpen ? (
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
