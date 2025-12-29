@@ -283,10 +283,11 @@ const App: React.FC = () => {
               </div>
               
               <div className="flex-shrink-0">
-                {/* Resume PDF located at: Vedant_Yeola_Resume.pdf */}
+                {/* Resume PDF located at: public/Vedant_Yeola_CV.pdf */}
                 <a 
-                  href="/Vedant_Yeola_Resume.pdf"
-                  download="Vedant_Yeola_Resume.pdf"
+                  href={`${import.meta.env.BASE_URL}Vedant_Yeola_CV.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`group relative flex flex-col items-center justify-center gap-2 px-12 py-8 ${accentClasses.bg} text-white font-bold rounded-3xl transition-all transform hover:scale-105 active:scale-95 shadow-2xl ${accentClasses.glow} overflow-hidden`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
