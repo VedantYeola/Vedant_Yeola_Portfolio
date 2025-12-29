@@ -34,7 +34,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isDarkMode, accent, setAccent }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isConnectOpen, setIsConnectOpen] = useState(false);
+  const [isAccentOpen, setIsAccentOpen] = useState(false);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -111,19 +111,23 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, accent, setAccent }) => {
         <div className="flex items-center gap-3">
           <div className="h-6 w-px bg-white/10 hidden sm:block"></div>
 
-          {/* Accent Switcher - Hidden by default, shows on hover */}
-          <div className="relative group/accent">
+          {/* Accent Switcher - Click to toggle */}
+          <div className="relative">
             <button 
+              onClick={() => setIsAccentOpen(!isAccentOpen)}
               className={`w-8 h-8 rounded-full transition-all transform hover:scale-110 
               ${accent === 'indigo' ? 'bg-indigo-500' : accent === 'emerald' ? 'bg-emerald-500' : accent === 'rose' ? 'bg-rose-500' : accent === 'cyan' ? 'bg-cyan-500' : 'bg-orange-500'} ring-2 ring-offset-2 ring-slate-400 ring-offset-slate-950`}
               title="Change accent color"
             />
-            <div className="absolute right-0 top-full mt-3 opacity-0 scale-95 -translate-y-2 pointer-events-none group-hover/accent:opacity-100 group-hover/accent:scale-100 group-hover/accent:translate-y-0 group-hover/accent:pointer-events-auto transition-all duration-300 ease-out origin-top-right">
+            <div className={`absolute right-0 top-full mt-2 transition-all duration-300 ease-out origin-top-right ${isAccentOpen ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}>
               <div className="flex items-center gap-2 p-2 bg-slate-900/95 rounded-2xl border border-white/10 backdrop-blur-xl shadow-2xl">
                 {accents.map((a) => (
                   <button
                     key={a}
-                    onClick={() => setAccent(a)}
+                    onClick={() => {
+                      setAccent(a);
+                      setIsAccentOpen(false);
+                    }}
                     className={`w-7 h-7 rounded-full transition-all transform hover:scale-125 ${a === accent ? 'ring-2 ring-offset-2 ring-white/50 ring-offset-slate-900 scale-110' : 'opacity-60 hover:opacity-100'} 
                     ${a === 'indigo' ? 'bg-indigo-500' : a === 'emerald' ? 'bg-emerald-500' : a === 'rose' ? 'bg-rose-500' : a === 'cyan' ? 'bg-cyan-500' : 'bg-orange-500'}`}
                     title={`${a.charAt(0).toUpperCase() + a.slice(1)}`}
