@@ -45,7 +45,7 @@ export const Inspiration = () => {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/40 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 backdrop-blur-md mb-12"
         >
           <Sparkles size={14} className="text-amber-500" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">Innovation Mindset</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">Philosophy & Vision</span>
         </motion.div>
 
         {/* The Quote */}
@@ -57,7 +57,7 @@ export const Inspiration = () => {
           className="relative mb-16"
         >
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.1]">
-            "Code is <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-rose-500">poetry</span>, and every <span className="italic">bug</span> is a lesson in <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-cyan-500">disguise</span>."
+            "The best way to <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-rose-500">predict</span> the future is to <span className="italic">build</span> it with <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-cyan-500">innovation</span>."
           </h2>
         </motion.blockquote>
 
