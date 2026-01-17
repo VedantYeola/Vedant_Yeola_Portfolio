@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { Scene } from './components/Scene';
 import ProjectCard from './components/ProjectCard';
 import { Achievements } from './components/Achievements';
+import { Inspiration } from './components/Inspiration';
 import { Footer } from './components/Footer';
 import { PERSONAL_INFO, PROJECTS, SKILL_GROUPS, EDUCATION } from './constants';
 import {
@@ -227,6 +228,9 @@ const App: React.FC = () => {
 
         {/* Achievements Section */}
         <Achievements />
+
+        {/* Inspiration Section */}
+        <Inspiration />
 
         {/* Contact Section */}
         <section id="contact" className="py-24 px-6">
