@@ -1,5 +1,5 @@
 
-import { Project, Education, Achievement, SkillGroup } from './types';
+import { Project, Education, Achievement, SkillGroup, Award } from './types';
 
 export const PERSONAL_INFO = {
   name: "Vedant Yeola",
@@ -72,7 +72,7 @@ export const EDUCATION: Education[] = [
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: "Languages",
-    items: ["Python", "Golang", "Javascript", "Typescript"]
+    items: ["Python", "Golang", "Javascript", "Typescript", "Latex"]
   },
   {
     category: "Cloud & DevOps",
@@ -84,14 +84,20 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     category: "Frameworks & Tools",
-    items: ["React", "Next.js", "Streamlit", "FastAPI", "MLflow", "Latex", "Slack"]
+    items: ["React", "Next.js", "Streamlit", "FastAPI", "MLflow", "Slack"]
   }
 ];
 
 export const ACHIEVEMENTS: Achievement[] = [
-  { title: "Completed Certificate Course in Python" },
-  { title: "Completed Certificate Course in Web Development" },
-  { title: "Python Programming powered by Wipro DICE ID" },
+  { title: "Full Stack Web Development" },
+  { title: "Python Programming by Wipro DICE ID" },
   { title: "AWS Educate Introduction to Generative AI - Training Badge" },
   { title: "AWS Educate Introduction to Cloud 101 - Training Badge" }
+];
+
+export const AWARDS: Award[] = [
+  { year: "2025", rank: "Badge", event: "AWS Educate Introduction to Generative AI" },
+  { year: "2025", rank: "Badge", event: "AWS Educate Introduction to Cloud 101" },
+  { year: "2024", rank: "Certificate", event: "Full Stack Web Development" },
+  { year: "2024", rank: "Certificate", event: "Python Programming by Wipro DICE ID" }
 ];

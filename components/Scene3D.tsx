@@ -1,62 +1,53 @@
-
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sphere, Stars, MeshDistortMaterial } from '@react-three/drei';
+import { Float, Icosahedron, MeshTransmissionMaterial, Environment, PivotControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { AccentColor } from '../App';
 
-const AnimatedShape = ({ isDarkMode, accent }: { isDarkMode: boolean; accent: AccentColor }) => {
+const PremiumShape = ({ accent, isDarkMode }: { accent: AccentColor; isDarkMode: boolean }) => {
   const meshRef = useRef<THREE.Mesh>(null!);
-
-  const accentHex = {
-    indigo: "#4f46e5",
-    emerald: "#10b981",
-    rose: "#f43f5e",
-    cyan: "#06b6d4",
-    orange: "#f97316"
-  }[accent];
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    meshRef.current.rotation.x = Math.cos(t / 4) / 8;
-    meshRef.current.rotation.y = Math.sin(t / 4) / 8;
-    meshRef.current.rotation.z = Math.sin(t / 4) / 20;
-    meshRef.current.position.y = Math.sin(t / 1.5) / 10;
+    meshRef.current.rotation.x = Math.sin(t / 2) * 0.2;
+    meshRef.current.rotation.y = Math.sin(t / 4) * 0.2;
+    meshRef.current.rotation.z = Math.cos(t / 4) * 0.1;
   });
 
+  // Monochrome toggle: Dark mode -> White/Silver, Light mode -> Dark Gray/Black
+  const accentColor = isDarkMode ? '#ffffff' : '#1e293b';
+
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <Sphere ref={meshRef} args={[1, 100, 200]} scale={2.4}>
-        <MeshDistortMaterial
-          color={accentHex}
-          attach="material"
-          distort={0.4}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
+    <Float speed={2} rotationIntensity={1} floatIntensity={1} floatingRange={[-0.1, 0.1]}>
+      <Icosahedron ref={meshRef} args={[1, 15]} scale={2.8}>
+        <MeshTransmissionMaterial
+          backside={false}
+          samples={16}
+          resolution={512}
+          thickness={0.2}
+          roughness={0}
+          anisotropy={1}
+          chromaticAberration={0.05}
+          color={accentColor}
         />
-      </Sphere>
+      </Icosahedron>
+
+      {/* Internal accent core for depth */}
+      <Icosahedron args={[0.5, 0]} scale={0.5}>
+        <meshStandardMaterial color={accentColor} emissive={accentColor} emissiveIntensity={2} toneMapped={false} />
+      </Icosahedron>
     </Float>
   );
 };
 
 const Scene3D: React.FC<{ isDarkMode: boolean; accent: AccentColor }> = ({ isDarkMode, accent }) => {
-  const accentHex = {
-    indigo: "#4f46e5",
-    emerald: "#10b981",
-    rose: "#f43f5e",
-    cyan: "#06b6d4",
-    orange: "#f97316"
-  }[accent];
-
   return (
-    <div className={`absolute top-0 left-0 w-full h-full -z-10 transition-opacity duration-1000 ${isDarkMode ? 'opacity-30' : 'opacity-20'}`}>
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <ambientLight intensity={isDarkMode ? 0.5 : 0.8} />
-        <directionalLight position={[10, 10, 5]} intensity={isDarkMode ? 1 : 1.5} />
-        <pointLight position={[-10, -10, -5]} color={accentHex} intensity={2} />
-        <AnimatedShape isDarkMode={isDarkMode} accent={accent} />
-        {isDarkMode && <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />}
+    <div className="absolute top-0 left-0 w-full h-full -z-10 bg-gradient-to-b from-transparent to-transparent">
+      <Canvas camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 2]}>
+        <Environment preset="city" />
+        <PremiumShape accent={accent} isDarkMode={isDarkMode} />
+        {/* Subtle background particles or fog could be added for more depth */}
+        {/* <fog attach="fog" args={[isDarkMode ? '#020617' : '#f8fafc', 5, 20]} /> */}
       </Canvas>
     </div>
   );

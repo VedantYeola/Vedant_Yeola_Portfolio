@@ -20,6 +20,12 @@ export interface Achievement {
   title: string;
 }
 
+export interface Award {
+  year: string;
+  rank: string;
+  event: string;
+}
+
 export interface SkillGroup {
   category: string;
   items: string[];
