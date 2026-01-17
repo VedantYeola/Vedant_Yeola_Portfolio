@@ -90,8 +90,10 @@ const App: React.FC = () => {
   // Animation variants
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
   };
+
+
 
   return (
     <div className="relative min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white selection:bg-indigo-500/30 transition-colors duration-500">
@@ -111,7 +113,13 @@ const App: React.FC = () => {
               viewport={{ once: true }}
               variants={sectionVariants}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-zinc-900 dark:text-white tracking-tight">Technical Arsenal</h2>
+              <motion.h2 
+                className="text-4xl md:text-5xl font-bold mb-6 text-zinc-900 dark:text-white tracking-tight"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                Technical Arsenal
+              </motion.h2>
               <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">
                 A comprehensive toolkit for building scalable, high-performance applications.
               </p>
@@ -120,11 +128,12 @@ const App: React.FC = () => {
               {SKILL_GROUPS.map((group, groupIdx) => (
                 <motion.div
                   key={groupIdx}
-                  className="p-8 rounded-[2rem] transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md"
+                  className="p-8 rounded-[2rem] transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md hover:shadow-2xl hover:shadow-indigo-500/10 dark:hover:shadow-indigo-500/20 hover:-translate-y-2"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: groupIdx * 0.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center gap-2 mb-6">
                     <h3 className={`font-bold text-sm uppercase tracking-wider ${
@@ -178,7 +187,13 @@ const App: React.FC = () => {
             >
               <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                 <div className="group cursor-default">
-                  <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-zinc-900 dark:text-white">Projects</h2>
+                  <motion.h2 
+                    className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-zinc-900 dark:text-white"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  >
+                    Projects
+                  </motion.h2>
                   <div className={`h-1.5 w-24 bg-gradient-to-r ${accentClasses.gradient} rounded-full transition-all group-hover:w-48`}></div>
                 </div>
                 <p className="text-zinc-600 dark:text-zinc-400 max-w-md text-lg font-medium">
@@ -212,14 +227,29 @@ const App: React.FC = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {EDUCATION.map((edu, idx) => (
-                  <div key={idx} className="relative p-8 rounded-[2rem] border transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md">
+                  <motion.div 
+                    key={idx} 
+                    className="relative p-8 rounded-[2rem] border transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/10 dark:hover:shadow-indigo-500/20"
+                    initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.2 }}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                  >
+                    {/* Animated gradient background on hover */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      initial={false}
+                    />
+                    <div className="relative z-10">
                     <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest block mb-3 opacity-60">{edu.period}</span>
                     <h4 className="text-2xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{edu.degree}</h4>
                     <p className="mb-4 font-medium text-zinc-600 dark:text-zinc-400">{edu.institution} | {edu.location}</p>
                     <div className="inline-block px-4 py-1.5 rounded-full bg-zinc-100 dark:bg-white/10 text-zinc-900 dark:text-white font-bold text-xs uppercase tracking-wider border border-zinc-200 dark:border-white/10">
                       {edu.score}
                     </div>
-                  </div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -239,16 +269,28 @@ const App: React.FC = () => {
               variants={sectionVariants}
             >
               <div className="text-center mb-16">
-                <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-zinc-900 dark:text-white">Let's Connect</h2>
+                <motion.h2 
+                  className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-zinc-900 dark:text-white"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  Let's Connect
+                </motion.h2>
                 <p className="text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto text-xl">
                   I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <a
+                <motion.a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="p-10 rounded-[2.5rem] border flex flex-col items-center gap-6 transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md"
+                  className="p-10 rounded-[2.5rem] border flex flex-col items-center gap-6 transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md hover:shadow-2xl hover:shadow-indigo-500/20"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <div className={`w-16 h-16 rounded-2xl ${accentClasses.bgLight} flex items-center justify-center ${accentClasses.text} group-hover:scale-110 transition-transform`}>
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
@@ -257,13 +299,19 @@ const App: React.FC = () => {
                     <p className="text-xs font-bold text-zinc-500 dark:text-zinc-500 uppercase tracking-widest mb-2">Email</p>
                     <p className="text-lg font-medium transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{PERSONAL_INFO.email}</p>
                   </div>
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
                   href={PERSONAL_INFO.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-10 rounded-[2.5rem] border flex flex-col items-center gap-6 transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md"
+                  className="p-10 rounded-[2.5rem] border flex flex-col items-center gap-6 transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md hover:shadow-2xl hover:shadow-blue-500/20"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <div className={`w-16 h-16 rounded-2xl ${accentClasses.bgLight} flex items-center justify-center ${accentClasses.text} group-hover:scale-110 transition-transform`}>
                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
@@ -272,11 +320,17 @@ const App: React.FC = () => {
                     <p className="text-xs font-bold text-zinc-500 dark:text-zinc-500 uppercase tracking-widest mb-2">LinkedIn</p>
                     <p className="text-lg font-medium transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">Vedant Yeola</p>
                   </div>
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
                   href={`tel:${PERSONAL_INFO.phone}`}
-                  className="p-10 rounded-[2.5rem] border flex flex-col items-center gap-6 transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md"
+                  className="p-10 rounded-[2.5rem] border flex flex-col items-center gap-6 transition-all duration-500 group bg-white/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-zinc-900 backdrop-blur-md hover:shadow-2xl hover:shadow-emerald-500/20"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <div className={`w-16 h-16 rounded-2xl ${accentClasses.bgLight} flex items-center justify-center ${accentClasses.text} group-hover:scale-110 transition-transform`}>
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
@@ -285,7 +339,7 @@ const App: React.FC = () => {
                     <p className="text-xs font-bold text-zinc-500 dark:text-zinc-500 uppercase tracking-widest mb-2">Phone</p>
                     <p className="text-lg font-medium transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{PERSONAL_INFO.phone}</p>
                   </div>
-                </a>
+                </motion.a>
               </div>
             </motion.div>
           </div>
