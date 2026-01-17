@@ -229,9 +229,6 @@ const App: React.FC = () => {
         {/* Achievements Section */}
         <Achievements />
 
-        {/* Inspiration Section */}
-        <Inspiration />
-
         {/* Contact Section */}
         <section id="contact" className="py-24 px-6">
           <div className="max-w-7xl mx-auto">
@@ -293,6 +290,9 @@ const App: React.FC = () => {
             </motion.div>
           </div>
         </section>
+
+        {/* Inspiration Section */}
+        <Inspiration />
       </main>
       
       <Footer />
