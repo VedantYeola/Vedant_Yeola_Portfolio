@@ -6,9 +6,9 @@ import { PERSONAL_INFO } from '../constants';
 export const Hero = () => {
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-      
+
       <div className="z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
-        
+
         {/* Status Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export const Hero = () => {
           className="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed tracking-tight"
         >
           Software Developer | Cloud & DevOps Enthusiast <br className="hidden md:block" />
-          
+
         </motion.p>
 
         {/* Action Buttons */}
@@ -52,7 +52,7 @@ export const Hero = () => {
           className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mt-10"
         >
           <a
-            href="/Vedant_Yeola_CV.pdf"
+            href="/Vedant_Yeola_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-medium hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-black/10 dark:shadow-white/10"

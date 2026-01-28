@@ -28,7 +28,7 @@ A modern, interactive portfolio website built with React, TypeScript, and Three.
 │   ├── ProjectCard.tsx # Project display cards
 │   └── Scene3D.tsx     # Three.js 3D background
 ├── public/
-│   └── Vedant_Yeola_CV.pdf  # Resume file
+│   └── Vedant_Yeola_Resume.pdf  # Resume file
 ├── App.tsx             # Main application
 ├── constants.ts        # Portfolio data (projects, skills, education)
 ├── types.ts            # TypeScript interfaces

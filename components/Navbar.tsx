@@ -39,12 +39,11 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 flex justify-center items-center p-4 sm:p-6 pointer-events-none`}
       >
-        <div 
-          className={`pointer-events-auto flex items-center justify-between px-6 py-3 rounded-full border transition-all duration-500 ${
-            isScrolled 
-              ? "bg-white/70 dark:bg-zinc-900/70 border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-black/20 w-full max-w-4xl" 
+        <div
+          className={`pointer-events-auto flex items-center justify-between px-6 py-3 rounded-full border transition-all duration-500 ${isScrolled
+              ? "bg-white/70 dark:bg-zinc-900/70 border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-black/20 w-full max-w-4xl"
               : "bg-transparent border-transparent w-full max-w-5xl"
-          }`}
+            }`}
         >
           {/* Logo / Name */}
           <a href="#" className="text-zinc-900 dark:text-white font-semibold tracking-tight text-lg">
@@ -57,22 +56,22 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
             <NavLink title="Projects" href="#projects" />
             <NavLink title="Education" href="#education" />
             <NavLink title="Achievements" href="#achievements" />
-            <NavLink title="Resume" href="/Vedant_Yeola_CV.pdf" target="_blank" />
+            <NavLink title="Resume" href="/Vedant_Yeola_Resume.pdf" target="_blank" />
           </div>
 
           <div className="flex items-center gap-4">
-             {/* Theme Toggle */}
-             <button
+            {/* Theme Toggle */}
+            <button
               onClick={toggleTheme}
               className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-black dark:hover:text-white transition-colors"
               aria-label="Toggle theme"
-             >
-                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-             </button>
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
 
             {/* CTA Button */}
             <div className="hidden md:block">
-              <a 
+              <a
                 href={`mailto:${PERSONAL_INFO.email}`}
                 className="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-semibold rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
               >
@@ -81,7 +80,7 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
             </div>
 
             {/* Mobile Menu Toggle */}
-            <button 
+            <button
               className="md:hidden text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
@@ -100,12 +99,12 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 backdrop-blur-3xl pt-24 px-6 md:hidden flex flex-col items-center gap-8 text-zinc-900 dark:text-white"
           >
-             <a href="#skills" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Skills</a>
-             <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Projects</a>
-             <a href="#education" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Education</a>
-             <a href="#achievements" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Achievements</a>
-             <a href="/Vedant_Yeola_CV.pdf" target="_blank" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium flex items-center gap-2">Resume <FileText size={24} /></a>
-             <a href={`mailto:${PERSONAL_INFO.email}`} className="px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black font-semibold rounded-full mt-4">Contact Me</a>
+            <a href="#skills" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Skills</a>
+            <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Projects</a>
+            <a href="#education" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Education</a>
+            <a href="#achievements" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium">Achievements</a>
+            <a href="/Vedant_Yeola_Resume.pdf" target="_blank" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-medium flex items-center gap-2">Resume <FileText size={24} /></a>
+            <a href={`mailto:${PERSONAL_INFO.email}`} className="px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black font-semibold rounded-full mt-4">Contact Me</a>
           </motion.div>
         )}
       </AnimatePresence>
