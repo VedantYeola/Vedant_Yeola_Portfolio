@@ -72,7 +72,7 @@ export const EDUCATION: Education[] = [
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: "Languages",
-    items: ["Python", "Golang", "Javascript", "Typescript", "Latex"]
+    items: ["Java", "Python", "Golang", "Javascript", "Typescript", "Latex"]
   },
   {
     category: "Cloud & DevOps",
@@ -84,7 +84,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     category: "Frameworks & Tools",
-    items: ["React", "Next.js", "Streamlit", "FastAPI", "MLflow", "Slack"]
+    items: ["React", "Next.js", "Selenium", "Cucumber", "Jira", "Streamlit", "FastAPI", "MLflow", "Slack"]
   }
 ];
 
@@ -96,6 +96,10 @@ export const ACHIEVEMENTS: Achievement[] = [
 ];
 
 export const AWARDS: Award[] = [
+  { year: "2025", rank: "Badge", event: "Context Engineering Foundation Verified by Cognizant" },
+  { year: "2025", rank: "Certificate", event: "Udemy Certification: Learn Selenium with Java, Cucumber & Frameworks" },
+  { year: "2025", rank: "Certificate", event: "Udemy Certification: GitHub Copilot for Beginners: AI Coding Crash Course" },
+  { year: "2025", rank: "Certificate", event: "Udemy Certification: Manual Software Testing + Agile with Jira Tool" },
   { year: "2025", rank: "Badge", event: "AWS Educate Introduction to Generative AI" },
   { year: "2025", rank: "Badge", event: "AWS Educate Introduction to Cloud 101" },
   { year: "2024", rank: "Certificate", event: "Full Stack Web Development" },

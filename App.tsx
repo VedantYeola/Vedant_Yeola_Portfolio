@@ -12,14 +12,16 @@ import {
   SiPython, SiGo, SiJavascript, SiTypescript,
   SiAmazonwebservices, SiDocker, SiJenkins, SiKubernetes, SiAnsible, SiTerraform, SiSonarqube,
   SiPostgresql, SiMongodb, SiFirebase,
-  SiReact, SiNextdotjs, SiStreamlit, SiFastapi, SiMlflow, SiLatex, SiSlack
+  SiReact, SiNextdotjs, SiStreamlit, SiFastapi, SiMlflow, SiLatex, SiSlack,
+  SiSelenium, SiCucumber, SiJira
 } from 'react-icons/si';
-import { FaDatabase } from 'react-icons/fa';
+import { FaDatabase, FaJava } from 'react-icons/fa';
 
 export type AccentColor = 'blue';
 
 // Skill Icons Mapping
 const skillIcons: Record<string, { icon: React.ElementType, color: string }> = {
+  "Java": { icon: FaJava, color: "#007396" },
   "Python": { icon: SiPython, color: "#3776AB" },
   "Golang": { icon: SiGo, color: "#00ADD8" },
   "Javascript": { icon: SiJavascript, color: "#F7DF1E" },
@@ -41,7 +43,10 @@ const skillIcons: Record<string, { icon: React.ElementType, color: string }> = {
   "FastAPI": { icon: SiFastapi, color: "#009688" },
   "MLflow": { icon: SiMlflow, color: "#0194E2" },
   "Latex": { icon: SiLatex, color: "#008080" },
-  "Slack": { icon: SiSlack, color: "#4A154B" }
+  "Slack": { icon: SiSlack, color: "#4A154B" },
+  "Selenium": { icon: SiSelenium, color: "#43B02A" },
+  "Cucumber": { icon: SiCucumber, color: "#23D96C" },
+  "Jira": { icon: SiJira, color: "#0052CC" }
 };
 
 const App: React.FC = () => {

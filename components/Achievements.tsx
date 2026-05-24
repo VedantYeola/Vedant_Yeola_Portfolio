@@ -145,13 +145,29 @@ export const Achievements = () => {
             </p>
           </div>
           <div className="flex flex-wrap gap-4 shrink-0">
-             <a 
+             {/* <a 
               href="https://www.credly.com/users/vedant-yeola" 
               target="_blank" 
               rel="noopener noreferrer"
               className="px-6 py-3 bg-zinc-800 dark:bg-zinc-100 rounded-2xl flex items-center gap-2 hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors text-sm font-semibold"
              >
                Credly Badges <ExternalLink size={14} />
+             </a> */}
+             <a 
+              href="https://www.credly.com/badges/6cc9d257-ecc0-43ed-9620-75d42f8caef4" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-emerald-600 dark:bg-emerald-500 text-white rounded-2xl flex items-center gap-2 hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-colors text-sm font-semibold border border-emerald-400/20"
+             >
+               Organization Badges <ExternalLink size={14} />
+             </a>
+             <a 
+              href="https://www.credly.com/badges/c9235e61-4948-4845-b186-398162dffb28" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-purple-600 dark:bg-purple-500 text-white rounded-2xl flex items-center gap-2 hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors text-sm font-semibold border border-purple-400/20"
+             >
+               Private Badge <ExternalLink size={14} />
              </a>
              <a 
               href="https://www.linkedin.com/in/Vedant-Yeola-b477b8268" 
